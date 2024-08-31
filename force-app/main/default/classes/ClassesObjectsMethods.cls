@@ -298,18 +298,20 @@
      */
     public static List<Book> generateBookList(Book myBook1) {
         // Create a list of books
-
+        List<Book> myListOfBooks = new List<Book>();
         // Update the title and author of myBook1
-
+        myBook1.title = 'Harry Potter and the Chamber of Secrets';
+        myBook1.author = 'J.K. Rowling';
         // Update the pages for myBook1 to 352
-
+        myBook1.pages = 352;
         // Create a new Book object with title "A Brief History of Time" and author "Stephen Hawking"
-
+        Book myBook2 = new Book('A Brief History of Time', 'Stephen Hawking');
         // Update the pages for A Brief History of Time to 256
-
+        myBook2.pages = 256;
         // Add the book to the list
-        
-        return null; // Replace null with the variable you used to store the result      
+        myListOfBooks.add(myBook1);
+        myListOfBooks.add(myBook2);
+        return myListOfBooks; // Replace null with the variable you used to store the result      
     }
 
 
@@ -322,20 +324,37 @@
      */
     public class Person {
         // Declare private two instance variables - (TEXT) name and (Number) age
-        
+        private String name;
+        private Integer age;
         // Constructor to initialize the name and age
-    
+    public Person(String name, Integer age) {
+        this.name = name;
+        this.age = age;
+    }
         // Method introduceYourself that returns the details of the person        
+        public String introduceYourself() {
+            String intro = 'Hello, my name is ' + name + ' and I am ' + age + ' years old.';
+            return intro;
+        }
         // Return a string in the format "Hello, my name is <name> and I am <age> years old."
         // For example, introduceYourself() should return a string like "Hello, my name is John Doe and I am 28 years old."
 
         // Getter method that returns the name of the person
-
+        public String getName() {
+            return name;
+        }
         // Getter method that returns the age of the person
-
+        public Integer getAge() {
+            return age;
+        }
         // Setter method that sets the name of the person
-
+        public void setName(String name) {
+            this.name = name;
+        }
         // Setter method that sets the age of the person
+        public void setAge(Integer age) {
+            this.age = age;
+        }
     }
 
     /**
@@ -348,15 +367,15 @@
     public static List<String> personDetails() {
         List<String> results = new List<String>();
         // Create a new instance of Person class
+        Person myJohnDoe = new Person('John Doe', 28);
         // Name the person 'John Doe' and set the age to 28
-
         // Add the details of the person using the introduceYourself method
-
+        results.add(myJohnDoe.introduceYourself());
         // Get the name of the person using the getter method and add it to the list
-
+        results.add(myJohnDoe.getName());
         // Get the age of the person using the getter method and add it to the list
-        
-        return null; // Replace null with the variable you used to store the result
+        results.add(String.valueOf(myJohnDoe.getAge()));
+        return results; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -368,9 +387,9 @@
      */
     public static Person createPerson(String name, Integer age) {
         // Create a new instance of the Person class using the provided name and age
-        
+        Person myPerson = new Person(name, age);
         // Return the new instance of the Person class
-        return null; // Replace null with the variable you used to store the result
+        return myPerson; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -383,15 +402,16 @@
      * @return A list of new Person objects.
      */
     public static List<Person> createMultiplePersons(List<String> names, Integer age) {
-
+        List <Person> allThePeople = new List<Person>();
         // Loop through each name in the provided list of names
-            // Create a new Person object for each name
-            
+            for (String n : names) {
+        Person p = new Person (n, age);
+        allThePeople.add(p);
+            }
+        // Create a new Person object for each name
             // Add the new Person object to the list of Person objects
-        
-        
         // Return the list of Person objects
-        return null; // Replace null with the variable you used to store the result
+        return allThePeople; // Replace null with the variable you used to store the result
     }
 
 
@@ -406,6 +426,16 @@
      * @return The Person object of the older person.
      */
     public static Person getOlderPerson(Person person1, Person person2) {
-        return null; // Replace null with the variable you used to store the result
+        Person resultPerson = new Person('John Doe', 28);
+        if (person1.age > person2.age) {
+            resultPerson = person1;
+        }
+        else if (person1.age < person2.age) {
+            resultPerson = person2;
+        }
+        else if (person1.age == person2.age) {
+            resultPerson = person1;
+        }
+        return resultPerson; // Replace null with the variable you used to store the result
     }
 }
