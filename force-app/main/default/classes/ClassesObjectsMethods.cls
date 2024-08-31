@@ -29,7 +29,7 @@
  * @author Your Name
  */
 
-public with sharing class ClassesObjectsMethods {
+ public with sharing class ClassesObjectsMethods {
     
     /**
      * Question 1
@@ -40,19 +40,24 @@ public with sharing class ClassesObjectsMethods {
      */
     public static List<String> practiceStringMethods() {
         // Initialize a String with 'Hello, Salesforce!'
-        
+        String myString = 'Hello, Salesforce!';
         // Get the length of the String        
+        Integer myLength = myString.length();
+        System.debug('length' + myString.length());
         // Get a substring of the String of the first 5 characters
+        String mySubString = myString.substring(0,5);
         // Convert the String to lower case
-        
+        String myLowerCase = myString.toLowerCase();
         // Return the list with the string data
+        List<String> myList = new List<String>();
         // In the first position add the string length
+        myList.add(String.valueOf(myLength));
         // In the second position add the substring
+        myList.add(mySubString);
         // In the third position add the string in lower case
-
-        return null; // Replace null with the variable you used to store the result
+        myList.add(myLowerCase);
+        return myList; // Replace null with the variable you used to store the result
     }
-
     /**
      * Question 2
      * Check if the input string starts with 'Sales', ends with 'Force', and contains 'Awesome'.
@@ -62,16 +67,15 @@ public with sharing class ClassesObjectsMethods {
      */
     public static List<Boolean> checkStringContent(String input) {
         // Initialize a list to store the results
-        
+        List<Boolean> isItCake = new List<Boolean>(); 
         // Check if the string starts with 'Sales'
-        
+        isItCake.add(input.startsWith('Sales'));
         // Check if the string ends with 'Force'
-        
+        isItCake.add(input.endsWith('Force'));
         // Check if the string contains 'Awesome'
-        
-        return null; // Replace null with the variable you used to store the result
+        isItCake.add(input.contains('Awesome'));
+        return isItCake; // Replace null with the variable you used to store the result
     }
-
     /**
      * Question 3
      * Take a sentence then remove any duplicate words, and return the sentence with only unique words.
@@ -81,17 +85,16 @@ public with sharing class ClassesObjectsMethods {
      */
     public static String removeDuplicateWords(String sentence) {
         // Split the sentence into words
-
+        List<String> myWords = sentence.split(' ');
         // Create a set to store the unique words
-
+        Set<String> mySentence = new Set<String>();
         // Add each word to the set
-
+        mySentence.addAll(myWords);
         // Join the unique words back into a sentence
-
+        String myString = String.join(mySentence, ' ');
         // Return the sentence with unique words
-        return null; // Replace null with the variable you used to store the result
+        return myString; // Replace null with the variable you used to store the result
     }
-
     /**
      * Question 4
      * This method takes a string as a parameter, and calculates the number of vowels in the string.
@@ -102,18 +105,19 @@ public with sharing class ClassesObjectsMethods {
      */
     public static Integer countVowels(String str) {
         // Initialize the result Integer
-
-        /*
-        for () {
+        Integer result = 0;
+        for (Integer i = 0; i < str.length(); i++)  {
             // get individual characters from the string - hint use substring or split
             // check if the character is a vowel
             // if it is a vowel, increment the result Integer
+            String c = str.substring(i, i + 1);
+            
+            if (c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u')  {
+                result++;
+            }
         }
-        */
-
-        return null; // Replace null with the variable you used to store the result
+        return result; // Replace null with the variable you used to store the result
     }
-
     /**
      * Question 5
      * Given a list of scientist names, combine their names together with a comma if it contains the letter 'g'.
@@ -124,20 +128,25 @@ public with sharing class ClassesObjectsMethods {
     public static String findTheScientist() {
         // The list of scientists' names
         List<String> scientistNames = new List<String>{'Tim Berners-Lee', 'Alan Turing', 'Grace Hopper', 'Donald Knuth', 'Guido van Rossum', 'Ken Thompson', 'Stephen Hawking'};
-
         // The variable to store the concatenated string
-
+        String concatString = '';
         // Loop through the list of scientists' names
-
+        for (String name : scientistNames) {
+            if (name.toLowerCase().contains('g')) {
+                concatString += name + ',';
+            }
+        
+        }
             // If the name doesn't contain the letter 'G', skip this iteration
-
+            //in that if, I need to check if the String from the value found at index in the Listi contains the letter 'g'
             // Add the name to the result string, followed by a comma
-
+        
+        concatString = concatString.removeEnd(',');
+        return concatString;
+        }
         // Remove the last comma from the result string
-
-        return null; // Replace null with the variable you used to store the result
-    }
-
+         // Replace null with the variable you used to store the result
+    
     /**
      * Question 6
      * This method calculates the absolute value of the difference between of two input numbers that are raised to the 2nd power.
@@ -147,14 +156,15 @@ public with sharing class ClassesObjectsMethods {
      * @return The absolute value of the difference
      */
     public static Double calculateDifferenceOfSquares(Double a, Double b) {
+        Double result;
         // Square the input numbers using the Math.pow() function
-
+        a = Math.pow(a, 2);
+        b = Math.pow(b, 2);
         // Calculate the absolute difference using Math.abs() function
-
+        result = Math.abs(a - b);
         // Return the result
-        return null; // Replace null with the variable you used to store the result
+        return result; // Replace null with the variable you used to store the result
     }
-
     /**
      * Question 7
      * Generate a random number between 50 and 100
@@ -163,11 +173,10 @@ public with sharing class ClassesObjectsMethods {
      */
     public static Integer generateRandomNumber() {
         // Use Math class to generate number between 50 and 100
-
+        Integer rNumber = Integer.valueOf(Math.random() * 10 +50);
         // Return the random integer
-        return null; // Replace null with the variable you used to store the result
+        return rNumber; // Replace null with the variable you used to store the result
     }
-
     /**
      * Question 8
      * Format the current date in the current user locale format.
@@ -176,13 +185,12 @@ public with sharing class ClassesObjectsMethods {
      */
     public static String getCurrentDate() {
         // Get the todays date
-
+        Date myDate = Date.today();
         // Format the current date
-
+        String lDate = myDate.format();
         // Return the result
-        return null; // Replace null with the variable you used to store the result
+        return lDate; // Replace null with the variable you used to store the result
     }
-
     /**
      * Question 9
      * Given a date time return the day of the week in number format
@@ -191,16 +199,26 @@ public with sharing class ClassesObjectsMethods {
      */
     public static String getDayOfWeek(DateTime dt) {
         // Define a map of day of the week as a key and day number as the value
+        Map<String, Integer> weekDays = new Map<String, Integer>();
         // Monday = 1, Tuesday = 2, etc.
-
+        weekDays.put('Monday', 1);
+        weekDays.put('Tuesday', 2);
+        weekDays.put('Wednesday', 3);
+        weekDays.put('Thursday', 4);
+        weekDays.put('Friday', 5);
+        weekDays.put('Saturday', 6);
+        weekDays.put('Sunday', 7);
         // Get the day name using .format('EEEE');
-
+        String dayEEEE = '';
+        System.debug(dayEEEE);
+        dayEEEE = Datetime.now().format('EEEE');
+        System.debug(dayEEEE);
         // Get the day number from the map using the day name
-
+        String result= String.valueOf(weekDays.get(dayEEEE));
+        System.debug(result);
         // Return the result as a string
-        return null; // Replace null with the variable you used to store the result
+        return result; // Replace null with the variable you used to store the result
     }
-
 
     /**
      * Question 10
@@ -212,10 +230,15 @@ public with sharing class ClassesObjectsMethods {
      * @return The a positive number years between the two dates, or null if either date is null.
      */
     public static Integer calculateYearDifference(Date d1, Date d2) {
-
+        Integer result;
         // Subtract the difference in years
-
-        return null; // Replace null with the variable you used to store the result
+        if (d1 == null || d2 == null) {
+            result = null;
+        }
+        else {
+        result = (d2.year() - d1.year());
+        }
+        return result; // Replace null with the variable you used to store the result
     }
 
     /**
@@ -228,21 +251,26 @@ public with sharing class ClassesObjectsMethods {
     public class Book {
         // Declare three public instance variables - title, author, pages
         // title
+        public String title;
         // author
+        public String author;
         // pages
+        public Integer pages;
     
         // Book constructor to initialize the title and author
-        public Book() {
+        public Book(String title, String author) {
             // Initialize the title and author
+            this.title = title;
+            this.author = author;
         }
     
         // Method that returns the details of the book
         public String getBookDetails() {
             // return A string containing the details of the book in the format "Title: <title>, Author: <author>"
-            return null; // Replace null with the variable you used to store the result
+            String bookDetails = 'Title: ' + title + ', Author: ' + author;
+            return bookDetails; // Replace null with the variable you used to store the result
         }
     }
-    
 
     /**
      * Question 12
@@ -252,11 +280,11 @@ public with sharing class ClassesObjectsMethods {
      */
     public static String createAndGetBookDetails() {
         // Create a Book object with title "A Brief History of Time" and author "Stephen Hawking"
-
+        Book myBook = new Book('A Brief History of Time', 'Stephen Hawking');
         // Call the getBookDetails method on the book object to get the details of the book
-
+        String result = myBook.getBookDetails();
         // Return the details of the book
-        return null; // Replace null with the variable you used to store the result
+        return result; // Replace null with the variable you used to store the result
     }
 
     /**
